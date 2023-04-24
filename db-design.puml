@@ -1,0 +1,144 @@
+@startuml database
+' hide the spot
+' hide circle
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+' social login ?
+entity "users" as users {
+  *id: int <<generated>>
+  ---
+  *username: varchar(255)
+  *email: varchar(255)
+  *password: varchar(255)
+  *email_verified: boolean
+  *following: int
+  *follower: int
+  avatar: varchar(255)
+  gender: smallint
+  dob: date
+  address: varchar(255)
+
+  *created_at: timestamp
+  *updated_at: timestamp
+  deleted_at: timestamp
+  ---
+  *role_id: int
+}
+
+entity "roles" as roles {
+  *id: int <<generated>>
+  ---
+  *created_at: timestamp
+  *updated_at: timestamp
+  deleted_at: timestamp
+  ---
+  *name: varchar(255)
+}
+
+entity "posts" as posts {
+  *id: int <<generated>>
+  ---
+  *title: varchar(255)
+  description: text
+  *censored: boolean
+  *is_public: boolean
+  *vote: int
+
+  *created_at: timestamp
+  *updated_at: timestamp
+  deleted_at: timestamp
+  ---
+  type_id: smallint <<FK>>
+  *user_id: int <<FK>>
+}
+
+entity "post_types" as post_types {
+  *id: smallint <<generated>>
+  ---
+  *name: varchar(50)
+
+  *created_at: timestamp
+  *updated_at: timestamp
+  deleted_at: timestamp
+}
+
+entity "comments" as comments {
+  *id: int <<generated>>
+  ---
+  *content: text
+
+  *created_at: timestamp
+  *updated_at: timestamp
+  deleted_at: timestamp
+  ---
+  *post_id: int <<FK>>
+  *user_id: int <<FK>>
+}
+
+entity "follows" as follows {
+  *id: int <<generated>>
+  ---
+  *created_at: timestamp
+  *updated_at: timestamp
+  deleted_at: timestamp
+  ---
+  *user_id: int <<FK>>
+  *follower_id: int <<FK>>
+}
+
+entity "tags" as tags {
+  *id: int <<generated>>
+  ---
+  *name: varchar(50)
+
+  *created_at: timestamp
+  *updated_at: timestamp
+  deleted_at: timestamp
+}
+
+entity "tagging" as tagging {
+  *id: int <<generated>>
+  ---
+  *created_at: timestamp
+  *updated_at: timestamp
+  deleted_at: timestamp
+  ---
+  *post_id: int <<FK>>
+  *tag_id: int <<FK>>
+}
+
+entity "favorites" as favorites {
+  *id: int <<generated>>
+  ---
+  *created_at: timestamp
+  deleted_at: timestamp
+  ---
+  *user_id: int <<FK>>
+  *post_id: int <<FK>>
+}
+
+entity "reports" as reports {
+  *id: int <<generated>>
+  ---
+  *created_at: timestamp
+  deleted_at: timestamp
+  ---
+  *user_id: int <<FK>>
+  *post_id: int <<FK>>
+}
+
+users }o--|| roles
+users |o--o{ follows
+users ||--o{ posts
+users ||--o{ favorites
+posts ||--o{ favorites
+users ||--o{ reports
+posts ||--o{ reports
+posts ||--o{ comments
+users ||--o{ comments
+posts ||--o{ tagging
+tags  ||--o{ tagging
+posts }|--|| post_types
+
+@enduml
