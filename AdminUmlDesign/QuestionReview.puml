@@ -1,0 +1,21 @@
+@startuml
+title Review Questions
+
+start
+:Admin logs in;
+:Display list of questions to be reviewed;
+repeat
+  :Admin selects a question to review;
+  if (Is the question valid?) then (yes)
+    :Accept the question;
+  else (no)
+    :Reject the question;
+  endif
+  :Update the status of the question;
+  :Send notification to the question asker;
+  :Continue reviewing other questions?;
+repeat while (There are questions pending for review?)
+:Finish the review process;
+stop
+
+@enduml
