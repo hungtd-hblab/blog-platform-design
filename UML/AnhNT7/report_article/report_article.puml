@@ -1,0 +1,17 @@
+@startuml
+
+title Report Article
+
+start
+repeat :check account;
+backward :redirect to screen login;
+repeat while (signed in?)
+:Show popup to fill in report information;
+if (:call api report article?) then (yes);
+:save to database;
+stop
+else
+:alert error;
+stop
+
+@enduml
