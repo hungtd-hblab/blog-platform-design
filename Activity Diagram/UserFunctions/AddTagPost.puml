@@ -1,0 +1,25 @@
+@startuml
+start
+
+:User selects a post to tag;
+
+if (Retrieve post data) then (yes)
+  :Displays post with current tags (System);
+  :Selects tags to add or remove (User);
+  :Submits updated tags (User);
+else (no)
+  :Displays error message (System);
+  :End;
+endif
+
+if (Validate updated tags) then (yes)
+  :Updates tags for the post (System);
+  :Saves changes to database (System);
+  :Displays success message (System);
+else (no)
+  :Displays error message (System);
+  :End;
+endif
+
+stop
+@enduml

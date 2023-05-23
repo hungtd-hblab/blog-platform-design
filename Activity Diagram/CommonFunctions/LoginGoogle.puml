@@ -1,0 +1,32 @@
+@startuml
+start
+
+:User clicks on "Login with Google" button;
+
+if (Enter Google login information) then (yes)
+  :Redirects to Google login page (System);
+  :Sends login request (Google);
+else (no)
+  :Displays error message (System);
+  :End;
+endif
+
+if (Google login page) then (yes)
+  :Displays Google login page (Google);
+  :Enter login information (User);
+  :Sends login information (System);
+  :Validates login information (Google);
+else (no)
+  :Displays error message (System);
+  :End;
+endif
+
+if (Validation successful) then (yes)
+  :Login successful (System);
+else (no)
+  :Displays error message (System);
+  :End;
+endif
+
+stop
+@enduml
