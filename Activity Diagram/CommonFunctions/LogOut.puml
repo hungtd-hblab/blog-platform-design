@@ -1,0 +1,17 @@
+@startuml
+start
+
+:User clicks on "Logout" button;
+
+if (Confirm logout) then (yes)
+  :Logs out user (System);
+  :Clears user session (System);
+  :Redirects to home page (System);
+else (no)
+  :Continues user session (System);
+  :Remains on current page (System);
+  :End;
+endif
+
+stop
+@enduml

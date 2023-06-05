@@ -1,0 +1,25 @@
+@startuml
+start
+
+:User clicks button "Edit Profile";
+
+if (Retrieve current profile data) then (yes)
+  :Displays profile form with current data (System);
+  :Modifies profile data (User);
+  :Submits updated profile data (User);
+else (no)
+  :Displays error message (System);
+  :End;
+endif
+
+if (Validate updated profile data) then (yes)
+  :Updates profile with new data (System);
+  :Saves changes to database (System);
+  :Displays success message (System);
+else (no)
+  :Displays error message (System);
+  :End;
+endif
+
+stop
+@enduml
