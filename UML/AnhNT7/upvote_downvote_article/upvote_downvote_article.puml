@@ -1,0 +1,15 @@
+@startuml
+title Upvote/Downvote Article
+
+start
+repeat :check account;
+backward :redirect to screen login;
+repeat while (signed in?)
+if (:call api upvote/downvote?) then (yes);
+:save to database;
+stop
+else
+:alert error;
+stop
+
+@enduml
