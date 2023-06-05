@@ -1,0 +1,21 @@
+@startuml
+title Review Articles
+
+start
+:Admin logs in;
+:Display list of articles to be reviewed;
+repeat
+  :Admin selects an article to review;
+  if (Is the article valid?) then (yes)
+    :Accept the article;
+  else (no)
+    :Reject the article;
+  endif
+  :Update the status of the article;
+  :Send notification to the author;
+  :Continue reviewing other articles?;
+repeat while (There are articles pending for review?)
+:Finish the review process;
+stop
+
+@enduml

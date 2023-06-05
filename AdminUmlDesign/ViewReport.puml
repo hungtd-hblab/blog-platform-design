@@ -1,0 +1,15 @@
+@startuml
+title Admin View Article Report
+
+start
+:Admin logs in;
+:Select the article to view report;
+:Retrieve the report data for the article;
+if (Is there a report available?) then (yes)
+  :Display the report for the article;
+else (no)
+  :Display a message that no report is available;
+endif
+stop
+
+@enduml

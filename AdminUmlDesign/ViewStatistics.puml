@@ -1,0 +1,16 @@
+@startuml
+title Generate Statistics
+
+start
+:Admin logs in;
+:Select the type of statistics to generate;
+if (Admin selects a statistics type) then (yes)
+  :Retrieve data for the selected statistics type;
+  :Generate the statistics;
+  :Display the generated statistics;
+else (no)
+  :Exit the generate statistics function;
+endif
+stop
+
+@enduml
