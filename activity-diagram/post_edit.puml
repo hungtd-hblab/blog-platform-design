@@ -1,0 +1,27 @@
+@startuml
+title Edit Post
+start
+:User go to List Post;
+:User clicks "Edit Post";
+:Get post content from Database;
+:Display Edit Post Page;
+:User edits title, content, upload images, add tags;
+:User selects "Preview";
+if (Valid params?) then (yes)
+  :Display post in preview;
+  if (User selects "Edit") then (yes)
+    :Back to Edit Post Page;
+  else (no)
+    :User selects "Publish";
+    if (Publish successfully?) then (yes)
+      :Display successful notification;
+    else (no)
+      :Display error;
+    endif
+  endif
+else (no)
+  :Display invalid params;
+  :Back to Edit Post Page and highlight invalid input form;
+endif
+stop
+@enduml

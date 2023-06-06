@@ -1,0 +1,15 @@
+@startuml
+title Comment on Post
+
+start
+:User go to Post;
+:User clicks input form to comment and submit;
+:Save comment to Database;
+if (Save successfully?) then (yes)
+  :Display successful notification;
+else (no)
+  :Display error notification;
+endif
+stop
+
+@enduml

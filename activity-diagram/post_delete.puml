@@ -1,0 +1,18 @@
+@startuml
+title Delete Post
+start
+:User go to List Post;
+:User clicks "Delete Post";
+:Show popup verify delete action;
+if (User want to delete?) then (yes)
+  :Delete from database;
+  if (Delete successfully?) then (yes)
+    :Display successful notification;
+  else (no)
+    :Display error;
+  endif
+else(no)
+  :Close popup;
+endif 
+stop
+@enduml
