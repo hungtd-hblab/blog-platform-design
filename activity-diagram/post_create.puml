@@ -1,0 +1,25 @@
+@startuml
+title Create Post
+start
+:User clicks "Create Post";
+:Display Create Post Page;
+:User writes title, content, upload images, add tags;
+:User selects "Preview";
+if (Valid params?) then (yes)
+  :Display post in preview;
+  if (User selects "Edit") then (yes)
+    :Back to Create Post Page;
+  else (no)
+    :User selects "Publish";
+    if (Publish successfully?) then (yes)
+      :Display successful notification;
+    else (no)
+      :Display error;
+    endif
+  endif
+else (no)
+  :Display invalid params;
+  :Back to Create Post Page and highlight invalid input form;
+endif
+stop
+@enduml
